@@ -37,12 +37,12 @@
 #define GIVE_ADC 'A'
 #define GIVE_ADC2 'B'
 
-// lectura del adc
+//Aqui obtenemos la lectura del ADC
 uint8_t valueADC = 0;
 char* cadenaADC;
 uint8_t valueADC2= 0;
 
-
+//-------------------------------------------------------------
 char caracteres[4];
 char auxiliar;
 uint8_t contador = 0;

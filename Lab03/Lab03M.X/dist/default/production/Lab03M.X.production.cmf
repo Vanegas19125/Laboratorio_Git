@@ -40,7 +40,7 @@ bssBANK0 BANK0 1 60 60 5 1
 strings STRING 0 800 800 25 2
 bssCOMMON COMMON 1 76 76 4 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\vaneg\AppData\Local\Temp\s3f8.o
+$C:\Users\vaneg\AppData\Local\Temp\s728.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 E E 3 2
 config CONFIG 4 2007 2007 2 2
@@ -100,22 +100,22 @@ STRING 1000-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Lab03M.X.production.o
-11 cinit CODE >860:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-11 cinit CODE >863:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-11 cinit CODE >892:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-12 cinit CODE >893:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-13 cinit CODE >894:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-14 cinit CODE >895:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-15 cinit CODE >898:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-16 cinit CODE >899:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-17 cinit CODE >900:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-18 cinit CODE >901:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-19 cinit CODE >902:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-1A cinit CODE >903:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-1B cinit CODE >904:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-1C cinit CODE >910:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-1C cinit CODE >912:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
-1D cinit CODE >913:C:\Users\vaneg\AppData\Local\Temp\s3f8.s
+11 cinit CODE >860:C:\Users\vaneg\AppData\Local\Temp\s728.s
+11 cinit CODE >863:C:\Users\vaneg\AppData\Local\Temp\s728.s
+11 cinit CODE >892:C:\Users\vaneg\AppData\Local\Temp\s728.s
+12 cinit CODE >893:C:\Users\vaneg\AppData\Local\Temp\s728.s
+13 cinit CODE >894:C:\Users\vaneg\AppData\Local\Temp\s728.s
+14 cinit CODE >895:C:\Users\vaneg\AppData\Local\Temp\s728.s
+15 cinit CODE >898:C:\Users\vaneg\AppData\Local\Temp\s728.s
+16 cinit CODE >899:C:\Users\vaneg\AppData\Local\Temp\s728.s
+17 cinit CODE >900:C:\Users\vaneg\AppData\Local\Temp\s728.s
+18 cinit CODE >901:C:\Users\vaneg\AppData\Local\Temp\s728.s
+19 cinit CODE >902:C:\Users\vaneg\AppData\Local\Temp\s728.s
+1A cinit CODE >903:C:\Users\vaneg\AppData\Local\Temp\s728.s
+1B cinit CODE >904:C:\Users\vaneg\AppData\Local\Temp\s728.s
+1C cinit CODE >910:C:\Users\vaneg\AppData\Local\Temp\s728.s
+1C cinit CODE >912:C:\Users\vaneg\AppData\Local\Temp\s728.s
+1D cinit CODE >913:C:\Users\vaneg\AppData\Local\Temp\s728.s
 4 intentry CODE >54:C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Lab03\Lab03M.X\mainM.c
 F07 text19 CODE >54:C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Lab03\Lab03M.X\mainM.c
 F07 text19 CODE >55:C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Lab03\Lab03M.X\mainM.c
@@ -448,11 +448,11 @@ spiInit@sTransmitEdge 22 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.
 __size_of_adcToString 0 0 ABS 0 - dist/default/production\Lab03M.X.production.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\vaneg\AppData\Local\Temp\s3f8.o
+___sp 0 0 STACK 2 stack C:\Users\vaneg\AppData\Local\Temp\s728.o
 _atoi B58 0 CODE 0 text5 dist/default/production\Lab03M.X.production.o
 _main 702 0 CODE 0 maintext dist/default/production\Lab03M.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Lab03M.X.production.o
-start 1C 0 CODE 0 init C:\Users\vaneg\AppData\Local\Temp\s3f8.o
+start 1C 0 CODE 0 init C:\Users\vaneg\AppData\Local\Temp\s728.o
 ___flmul@aexp 3C 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.production.o
 ___flmul@bexp 41 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.production.o
 ___flmul@prod 42 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.production.o
@@ -469,12 +469,12 @@ __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 ?___wmul 20 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.production.o
 _UARTSendString F0C 0 CODE 0 text15 dist/default/production\Lab03M.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s3f8.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s3f8.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s3f8.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s3f8.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s3f8.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s3f8.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s728.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s728.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s728.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s728.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s728.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\s728.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\Lab03M.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -499,8 +499,8 @@ __end_of___lwmod 1F74 0 CODE 0 text10 dist/default/production\Lab03M.X.productio
 __size_of_isdigit 0 0 ABS 0 - dist/default/production\Lab03M.X.production.o
 _valueADC 79 0 COMMON 1 bssCOMMON dist/default/production\Lab03M.X.production.o
 __Umul8_16@multiplicand 74 0 COMMON 1 cstackCOMMON dist/default/production\Lab03M.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\vaneg\AppData\Local\Temp\s3f8.o
-___stacklo 0 0 ABS 0 - C:\Users\vaneg\AppData\Local\Temp\s3f8.o
+___stackhi 0 0 ABS 0 - C:\Users\vaneg\AppData\Local\Temp\s728.o
+___stacklo 0 0 ABS 0 - C:\Users\vaneg\AppData\Local\Temp\s728.o
 ___lwdiv@quotient 25 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.production.o
 ___flmul@a 32 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.production.o
 ___flmul@b 2E 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.production.o
@@ -519,7 +519,7 @@ _SSPCON 14 0 ABS 0 - dist/default/production\Lab03M.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\Lab03M.X.production.o
 _TRISC5 43D 0 ABS 0 - dist/default/production\Lab03M.X.production.o
 _isdigit$909 74 0 COMMON 1 cstackCOMMON dist/default/production\Lab03M.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\vaneg\AppData\Local\Temp\s3f8.o
+___int_sp 0 0 STACK 2 stack C:\Users\vaneg\AppData\Local\Temp\s728.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -583,7 +583,7 @@ UARTSendString@i 26 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.produ
 __Lintentry 8 0 CODE 0 intentry -
 ___lldiv@divisor 20 0 BANK0 1 cstackBANK0 dist/default/production\Lab03M.X.production.o
 __stringtab 1000 0 STRING 0 strings dist/default/production\Lab03M.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\vaneg\AppData\Local\Temp\s3f8.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\vaneg\AppData\Local\Temp\s728.o
 __end_of___xxtofl A1C 0 CODE 0 text8 dist/default/production\Lab03M.X.production.o
 __size_of___wmul 0 0 ABS 0 - dist/default/production\Lab03M.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
