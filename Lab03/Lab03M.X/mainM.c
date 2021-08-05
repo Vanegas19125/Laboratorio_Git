@@ -88,7 +88,7 @@ int main(){
  
 
     cadenaADC = adcToString(valueADC);
-    UARTSendString("POT 1: ",20);
+    UARTSendString("POT 1:",20);
     UARTSendString(cadenaADC,20);
     
     
