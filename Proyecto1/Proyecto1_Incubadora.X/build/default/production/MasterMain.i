@@ -2843,13 +2843,36 @@ char hall=0;
 
 char temp, hum;
 char numero[10];
+
+
+uint8_t menu =0;
+uint8_t opcion = 0;
+uint8_t incrementar, decrementar, ok;
+char umbralTemp=32, umbralHum=20;
+char portbAnterior =31,portbActual=31;
+uint8_t contador = 0;
+uint8_t direccion = 0;
+
+void step(char steps, char dir);
+
+
+void __attribute__((picinterrupt(("")))) ISR(){
+    if(PIR1bits.TMR2IF){
+
+        contador++;
+        PIR1bits.TMR2IF = 0;
+
+    }
+}
+
 void main(void) {
     ANSEL = 0;
     ANSELH = 0;
 
     TRISD = 0;
     TRISE = 0;
-    TRISB = 8;
+    TRISB = 31;
+    OPTION_REGbits.nRBPU= 0;
     TRISA = 0;
 
 
@@ -2858,55 +2881,206 @@ void main(void) {
     UARTInit(9600,1);
     I2C_Master_Init(100000);
 
-    LcdSetCursor(1,1);
-    LcdWriteString("Hall: Temp: Hum:");
+    PR2 =255;
+    T2CONbits.TOUTPS = 0b1111;
+    T2CONbits.T2CKPS = 3;
+    T2CONbits.TMR2ON = 1;
+
+
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    PIE1bits.TMR2IE = 1;
+
     while(1){
-        I2C_Master_Start();
-        I2C_Master_Write(0b00000011);
-        hall = I2C_Master_Read(0);
-        I2C_Master_Stop();
-        _delay((unsigned long)((10)*(4000000/4000.0)));
-        LcdSetCursor(2,1);
-        PORTA = hall;
-        switch(hall){
-            case 0:
-                LcdWriteString("open ");
-                break;
-            case 1:
-                LcdWriteString("close");
-                break;
+        portbAnterior = portbActual;
+        portbActual = PORTB;
+
+        if((portbAnterior&1) == 0 && (portbActual&1) == 1 ) menu = ~menu;
+        if((portbAnterior&2) == 0 && (portbActual&2) == 2 ) decrementar = 1;
+        if((portbAnterior&4) == 0 && (portbActual&4) == 4 ) incrementar = 1;
+        if((portbAnterior&8) == 0 && (portbActual&8) == 8 ) ok = 1;
+
+        if(contador == 45){
+
+            contador = 0;
+            step(128,direccion);
+
+            direccion = ~direccion&1;
         }
 
-        I2C_Master_Start();
-        I2C_Master_Write(0b00000001);
-       temp = I2C_Master_Read(0);
-        I2C_Master_Stop();
-        _delay((unsigned long)((10)*(4000000/4000.0)));
 
-        I2C_Master_Start();
-        I2C_Master_Write(0b00000001);
-        hum = I2C_Master_Read(0);
-        I2C_Master_Stop();
-        _delay((unsigned long)((10)*(4000000/4000.0)));
+        if(!menu){
+            LcdSetCursor(1,1);
+            LcdWriteString("Hall: Temp: Hum:");
+            I2C_Master_Start();
+            I2C_Master_Write(0b00000011);
+            hall = I2C_Master_Read(0);
+            I2C_Master_Stop();
+            _delay((unsigned long)((10)*(4000000/4000.0)));
+            LcdSetCursor(2,1);
+
+            switch(hall){
+                case 0:
+                    LcdWriteString("open ");
+                    break;
+                case 1:
+                    LcdWriteString("close");
+                    break;
+            }
+
+            I2C_Master_Start();
+            I2C_Master_Write(0b00000001);
+           temp = I2C_Master_Read(0);
+            I2C_Master_Stop();
+            _delay((unsigned long)((10)*(4000000/4000.0)));
+
+            I2C_Master_Start();
+            I2C_Master_Write(0b00000001);
+            hum = I2C_Master_Read(0);
+            I2C_Master_Stop();
+            _delay((unsigned long)((10)*(4000000/4000.0)));
 
 
 
-        itoa(numero,temp,10);
-        LcdWriteChar(' ');
-        LcdWriteChar(' ');
-        LcdWriteString(numero);
-        LcdWriteChar(0xDF);
-        LcdWriteChar('C');
+            itoa(numero,temp,10);
+            LcdWriteChar(' ');
+            LcdWriteChar(' ');
+            LcdWriteString(numero);
+            LcdWriteChar(0xDF);
+            LcdWriteChar('C');
+
+            if(hum > umbralHum){
+                itoa(numero,hum,10);
+
+                LcdWriteChar(' ');
+                LcdWriteString(numero);
+                LcdWriteChar('%');
+                LcdWriteChar(' ');
+            }else{
+                LcdWriteString(" N.A");
+            }
 
 
-        itoa(numero,hum,10);
 
-        LcdWriteChar(' ');
-        LcdWriteString(numero);
-        LcdWriteChar('%');
+            if(temp > umbralTemp) PORTA |= 48;
+            else if(temp <= (umbralTemp-5))PORTA &= ~48;
+        }else{
+            LcdSetCursor(1,1);
+            LcdWriteString(" Selec. opcion: ");
+            LcdSetCursor(2,1);
+            if(incrementar || decrementar){
+                opcion = ~opcion;
+                incrementar = decrementar = 0;
+            }
+            if(opcion)LcdWriteString(" Temp  >humedad");
+            else LcdWriteString(">Temp   humedad");
+
+            if(ok){
+                ok = 0;
+
+                while(ok == 0){
+                    portbAnterior = portbActual;
+                    portbActual = PORTB;
+
+
+                    if((portbAnterior&2) == 0 && (portbActual&2) == 2 ) decrementar = 1;
+                    if((portbAnterior&4) == 0 && (portbActual&4) == 4 ) incrementar = 1;
+                    if((portbAnterior&8) == 0 && (portbActual&8) == 8 ) ok = 1;
+
+
+                    if(opcion){
+
+                        if (incrementar){
+                            incrementar = 0;
+                            umbralHum++;
+                        }
+                        if(decrementar && umbralHum>=0){
+                            decrementar = 0;
+                            umbralHum--;
+                        }
+                        LcdSetCursor(1,1);
+                        LcdWriteString("  Hum. minima:  ");
+                        LcdSetCursor(2,1);
+                        LcdWriteString("  ");
+                        itoa(numero,umbralHum,10);
+                        LcdWriteString(numero);
+                        LcdWriteString("%                      ");
+                    }else{
+                        LcdSetCursor(1,1);
+                        LcdWriteString("  Temp. Maxima: ");
+                        if (incrementar){
+                            incrementar = 0;
+                            umbralTemp++;
+                        }
+                        if(decrementar && umbralTemp>=0){
+                            decrementar = 0;
+                            umbralTemp--;
+                        }
+
+                        LcdSetCursor(2,1);
+                        LcdWriteString("  ");
+                        itoa(numero,umbralTemp,10);
+                        LcdWriteString(numero);
+                        LcdWriteChar(0xDF);
+                        LcdWriteString("C                   ");
+                    }
+
+                }
+                ok = 0;
+            }
+
+        }
 
     }
 
 
     return;
+}
+
+
+void step(char steps, char dir){
+
+    switch(dir){
+        case 0:
+            for (int i = 0; i<steps; i++){
+                PORTA &= ~14;
+                PORTA |= 1;
+                _delay((unsigned long)((10)*(4000000/4000.0)));
+                PORTA &= ~13;
+                PORTA |= 2;
+                _delay((unsigned long)((10)*(4000000/4000.0)));
+                PORTA &= ~11;
+                PORTA |= 4;
+                _delay((unsigned long)((10)*(4000000/4000.0)));
+                PORTA &= ~5;
+                PORTA |= 8;
+                _delay((unsigned long)((10)*(4000000/4000.0)));
+            }
+            break;
+        case 1:
+            for (int i = 0; i<steps; i++){
+                PORTA &= ~5;
+                PORTA |= 8;
+                _delay((unsigned long)((10)*(4000000/4000.0)));
+
+                PORTA &= ~11;
+                PORTA |= 4;
+                _delay((unsigned long)((10)*(4000000/4000.0)));
+
+
+                PORTA &= ~13;
+                PORTA |= 2;
+                _delay((unsigned long)((10)*(4000000/4000.0)));
+
+
+                PORTA &= ~14;
+                PORTA |= 1;
+                _delay((unsigned long)((10)*(4000000/4000.0)));
+
+            }
+            break;
+
+    }
+
+
 }

@@ -174,7 +174,7 @@ bssCOMMON 70 79 COMMON 70 1
 cstackBANK0 20 31 BANK0 20 1
 %locals
 dist/default/production\Slave1_Temp.X.production.o
-C:\Users\vaneg\AppData\Local\Temp\srtc.s
+C:\Users\vaneg\AppData\Local\Temp\sne0.s
 814 11 0 CODE 0
 817 11 0 CODE 0
 846 11 0 CODE 0

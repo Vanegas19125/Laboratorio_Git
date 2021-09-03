@@ -25,7 +25,7 @@ intentry CODE 0 4 4 A 2
 bssBANK0 BANK0 1 2B 2B 7 1
 bssCOMMON COMMON 1 70 70 5 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\vaneg\AppData\Local\Temp\srtc.o
+$C:\Users\vaneg\AppData\Local\Temp\sne0.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 E E 3 2
 config CONFIG 4 2007 2007 2 2
@@ -75,25 +75,25 @@ STRING 1B8-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Slave1_Temp.X.production.o
-11 cinit CODE >814:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-11 cinit CODE >817:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-11 cinit CODE >846:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-12 cinit CODE >847:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-13 cinit CODE >848:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-14 cinit CODE >849:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-15 cinit CODE >850:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-16 cinit CODE >853:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-17 cinit CODE >854:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-18 cinit CODE >855:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-19 cinit CODE >856:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-1A cinit CODE >857:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-1B cinit CODE >858:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-1C cinit CODE >859:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-1D cinit CODE >860:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-1E cinit CODE >861:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-1F cinit CODE >867:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-1F cinit CODE >869:C:\Users\vaneg\AppData\Local\Temp\srtc.s
-20 cinit CODE >870:C:\Users\vaneg\AppData\Local\Temp\srtc.s
+11 cinit CODE >814:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+11 cinit CODE >817:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+11 cinit CODE >846:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+12 cinit CODE >847:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+13 cinit CODE >848:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+14 cinit CODE >849:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+15 cinit CODE >850:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+16 cinit CODE >853:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+17 cinit CODE >854:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+18 cinit CODE >855:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+19 cinit CODE >856:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+1A cinit CODE >857:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+1B cinit CODE >858:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+1C cinit CODE >859:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+1D cinit CODE >860:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+1E cinit CODE >861:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+1F cinit CODE >867:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+1F cinit CODE >869:C:\Users\vaneg\AppData\Local\Temp\sne0.s
+20 cinit CODE >870:C:\Users\vaneg\AppData\Local\Temp\sne0.s
 4 intentry CODE >33:C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Proyecto1\Slave1_Temp.X\Slave1Main.c
 23 text5 CODE >33:C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Proyecto1\Slave1_Temp.X\Slave1Main.c
 23 text5 CODE >34:C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Proyecto1\Slave1_Temp.X\Slave1Main.c
@@ -235,22 +235,22 @@ _BF 4A0 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _PEIE 5E 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\vaneg\AppData\Local\Temp\srtc.o
+___sp 0 0 STACK 2 stack C:\Users\vaneg\AppData\Local\Temp\sne0.o
 _main 240 0 CODE 0 maintext dist/default/production\Slave1_Temp.X.production.o
 _temp 74 0 COMMON 1 bssCOMMON dist/default/production\Slave1_Temp.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
-start 1C 0 CODE 0 init C:\Users\vaneg\AppData\Local\Temp\srtc.o
+start 1C 0 CODE 0 init C:\Users\vaneg\AppData\Local\Temp\sne0.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 __size_of_dht11_config 0 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\srtc.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\srtc.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\srtc.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\srtc.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\srtc.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\srtc.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\sne0.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\sne0.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\sne0.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\sne0.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\sne0.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\vaneg\AppData\Local\Temp\sne0.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -259,8 +259,8 @@ __end_of_dht11_config 370 0 CODE 0 text3 dist/default/production\Slave1_Temp.X.p
 _ANSELH 189 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 _SSPCONbits 14 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\vaneg\AppData\Local\Temp\srtc.o
-___stacklo 0 0 ABS 0 - C:\Users\vaneg\AppData\Local\Temp\srtc.o
+___stackhi 0 0 ABS 0 - C:\Users\vaneg\AppData\Local\Temp\sne0.o
+___stacklo 0 0 ABS 0 - C:\Users\vaneg\AppData\Local\Temp\sne0.o
 _I2C_Slave_Init 32C 0 CODE 0 text4 dist/default/production\Slave1_Temp.X.production.o
 start_initialization 22 0 CODE 0 cinit dist/default/production\Slave1_Temp.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
@@ -272,7 +272,7 @@ _SSPCON 14 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 _TRISC4 43C 0 ABS 0 - dist/default/production\Slave1_Temp.X.production.o
 dht11_read_byte@i 21 0 BANK0 1 cstackBANK0 dist/default/production\Slave1_Temp.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\vaneg\AppData\Local\Temp\srtc.o
+___int_sp 0 0 STACK 2 stack C:\Users\vaneg\AppData\Local\Temp\sne0.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -321,7 +321,7 @@ _dht11_aux 72 0 COMMON 1 bssCOMMON dist/default/production\Slave1_Temp.X.product
 __end_of_ISR 148 0 CODE 0 text5 dist/default/production\Slave1_Temp.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 __end_of_dht11_read_byte 32C 0 CODE 0 text2 dist/default/production\Slave1_Temp.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\vaneg\AppData\Local\Temp\srtc.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\vaneg\AppData\Local\Temp\sne0.o
 _dht11_byte 2B 0 BANK0 1 bssBANK0 dist/default/production\Slave1_Temp.X.production.o
 _dht11_read 148 0 CODE 0 text1 dist/default/production\Slave1_Temp.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
