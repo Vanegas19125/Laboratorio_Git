@@ -130,12 +130,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "92 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
 [v __delay `JF1256 ~T0 @X0 0 e ]
 [p i __delay ]
+"44 ./USART.h
+[; ;./USART.h: 44: void UARTSendString(const char* str, const uint8_t max_length);
+[v _UARTSendString `(v ~T0 @X0 0 ef2`*Cuc`Cuc ]
 "113 C:\Program Files\Microchip\xc8\v2.31\pic\include\c90\stdlib.h
 [; ;C:\Program Files\Microchip\xc8\v2.31\pic\include\c90\stdlib.h: 113: extern char * itoa(char * buf, int val, int base);
 [v _itoa `(*uc ~T0 @X0 0 ef3`*uc`i`i ]
 "38 ./LCD.h
 [; ;./LCD.h: 38:  void LcdWriteChar(char a);
 [v _LcdWriteChar `(v ~T0 @X0 0 ef1`uc ]
+"37 ./USART.h
+[; ;./USART.h: 37: void UARTSendChar(const char c);
+[v _UARTSendChar `(v ~T0 @X0 0 ef1`Cuc ]
 "13 MasterMain.c
 [p x FOSC  =  INTRC_NOCLKOUT ]
 "14
@@ -425,14 +431,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _decrementar `uc ~T0 @X0 1 e ]
 [v _ok `uc ~T0 @X0 1 e ]
 "46
-[; ;MasterMain.c: 46: char umbralTemp=32, umbralHum=20;
+[; ;MasterMain.c: 46: char umbralTemp=40, umbralHum=40;
 [v _umbralTemp `uc ~T0 @X0 1 e ]
 [i _umbralTemp
--> -> 32 `i `uc
+-> -> 40 `i `uc
 ]
 [v _umbralHum `uc ~T0 @X0 1 e ]
 [i _umbralHum
--> -> 20 `i `uc
+-> -> 40 `i `uc
 ]
 "47
 [; ;MasterMain.c: 47: char portbAnterior =31,portbActual=31;
@@ -516,8 +522,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MasterMain.c: 75:     LcdInit();
 [e ( _LcdInit ..  ]
 "76
-[; ;MasterMain.c: 76:     UARTInit(9600,1);
-[e ( _UARTInit (2 , -> -> -> 9600 `i `l `ul -> -> 1 `i `uc ]
+[; ;MasterMain.c: 76:     UARTInit(19200,1);
+[e ( _UARTInit (2 , -> -> -> 19200 `i `l `ul -> -> 1 `i `uc ]
 "77
 [; ;MasterMain.c: 77:     I2C_Master_Init(100000);
 [e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
@@ -573,15 +579,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ok -> -> 1 `i `uc ]
 [e :U 151 ]
 "98
-[; ;MasterMain.c: 98:         if(contador == 45){
-[e $ ! == -> _contador `i -> 45 `i 152  ]
+[; ;MasterMain.c: 98:         if(contador == 229){
+[e $ ! == -> _contador `i -> 229 `i 152  ]
 {
 "100
 [; ;MasterMain.c: 100:             contador = 0;
 [e = _contador -> -> 0 `i `uc ]
 "101
-[; ;MasterMain.c: 101:             step(128,direccion);
-[e ( _step (2 , -> -> 128 `i `uc -> _direccion `uc ]
+[; ;MasterMain.c: 101:             step(64,direccion);
+[e ( _step (2 , -> -> 64 `i `uc -> _direccion `uc ]
 "103
 [; ;MasterMain.c: 103:             direccion = ~direccion&1;
 [e = _direccion -> & ~ -> _direccion `i -> 1 `i `uc ]
@@ -625,22 +631,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MasterMain.c: 118:                 case 0:
 [e :U 156 ]
 "119
-[; ;MasterMain.c: 119:                     LcdWriteString("open ");
+[; ;MasterMain.c: 119:                     LcdWriteString("close ");
 [e ( _LcdWriteString (1 :s 2C ]
 "120
-[; ;MasterMain.c: 120:                     break;
-[e $U 154  ]
+[; ;MasterMain.c: 120:                     UARTSendString("0,",5);
+[e ( _UARTSendString (2 , :s 3C -> -> 5 `i `uc ]
 "121
-[; ;MasterMain.c: 121:                 case 1:
-[e :U 157 ]
-"122
-[; ;MasterMain.c: 122:                     LcdWriteString("close");
-[e ( _LcdWriteString (1 :s 3C ]
-"123
-[; ;MasterMain.c: 123:                     break;
+[; ;MasterMain.c: 121:                     break;
 [e $U 154  ]
+"122
+[; ;MasterMain.c: 122:                 case 1:
+[e :U 157 ]
+"123
+[; ;MasterMain.c: 123:                     LcdWriteString("open ");
+[e ( _LcdWriteString (1 :s 4C ]
 "124
-[; ;MasterMain.c: 124:             }
+[; ;MasterMain.c: 124:                     UARTSendString("1,",6);
+[e ( _UARTSendString (2 , :s 5C -> -> 6 `i `uc ]
+"125
+[; ;MasterMain.c: 125:                     break;
+[e $U 154  ]
+"126
+[; ;MasterMain.c: 126:             }
 }
 [e $U 154  ]
 [e :U 155 ]
@@ -648,447 +660,459 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 1 `i 157
  154 ]
 [e :U 154 ]
-"126
-[; ;MasterMain.c: 126:             I2C_Master_Start();
-[e ( _I2C_Master_Start ..  ]
-"127
-[; ;MasterMain.c: 127:             I2C_Master_Write(0b00000001);
-[e ( _I2C_Master_Write (1 -> -> 1 `i `ui ]
 "128
-[; ;MasterMain.c: 128:            temp = I2C_Master_Read(0);
-[e = _temp -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
-"129
-[; ;MasterMain.c: 129:             I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"130
-[; ;MasterMain.c: 130:             _delay((unsigned long)((10)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"132
-[; ;MasterMain.c: 132:             I2C_Master_Start();
+[; ;MasterMain.c: 128:             I2C_Master_Start();
 [e ( _I2C_Master_Start ..  ]
-"133
-[; ;MasterMain.c: 133:             I2C_Master_Write(0b00000001);
+"129
+[; ;MasterMain.c: 129:             I2C_Master_Write(0b00000001);
 [e ( _I2C_Master_Write (1 -> -> 1 `i `ui ]
-"134
-[; ;MasterMain.c: 134:             hum = I2C_Master_Read(0);
-[e = _hum -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
-"135
-[; ;MasterMain.c: 135:             I2C_Master_Stop();
+"130
+[; ;MasterMain.c: 130:            temp = I2C_Master_Read(0);
+[e = _temp -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
+"131
+[; ;MasterMain.c: 131:             I2C_Master_Stop();
 [e ( _I2C_Master_Stop ..  ]
-"136
-[; ;MasterMain.c: 136:             _delay((unsigned long)((10)*(4000000/4000.0)));
+"132
+[; ;MasterMain.c: 132:             _delay((unsigned long)((10)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"140
-[; ;MasterMain.c: 140:             itoa(numero,temp,10);
-[e ( _itoa (3 , , &U _numero -> _temp `i -> 10 `i ]
-"141
-[; ;MasterMain.c: 141:             LcdWriteChar(' ');
-[e ( _LcdWriteChar (1 -> -> 32 `ui `uc ]
+"134
+[; ;MasterMain.c: 134:             I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
+"135
+[; ;MasterMain.c: 135:             I2C_Master_Write(0b00000001);
+[e ( _I2C_Master_Write (1 -> -> 1 `i `ui ]
+"136
+[; ;MasterMain.c: 136:             hum = I2C_Master_Read(0);
+[e = _hum -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
+"137
+[; ;MasterMain.c: 137:             I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"138
+[; ;MasterMain.c: 138:             _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "142
-[; ;MasterMain.c: 142:             LcdWriteChar(' ');
-[e ( _LcdWriteChar (1 -> -> 32 `ui `uc ]
+[; ;MasterMain.c: 142:             itoa(numero,temp,10);
+[e ( _itoa (3 , , &U _numero -> _temp `i -> 10 `i ]
 "143
-[; ;MasterMain.c: 143:             LcdWriteString(numero);
-[e ( _LcdWriteString (1 -> &U _numero `*Cuc ]
+[; ;MasterMain.c: 143:             LcdWriteChar(' ');
+[e ( _LcdWriteChar (1 -> -> 32 `ui `uc ]
 "144
-[; ;MasterMain.c: 144:             LcdWriteChar(0xDF);
-[e ( _LcdWriteChar (1 -> -> 223 `i `uc ]
+[; ;MasterMain.c: 144:             LcdWriteChar(' ');
+[e ( _LcdWriteChar (1 -> -> 32 `ui `uc ]
 "145
-[; ;MasterMain.c: 145:             LcdWriteChar('C');
-[e ( _LcdWriteChar (1 -> -> 67 `ui `uc ]
+[; ;MasterMain.c: 145:             LcdWriteString(numero);
+[e ( _LcdWriteString (1 -> &U _numero `*Cuc ]
+"146
+[; ;MasterMain.c: 146:             UARTSendString(numero,6);
+[e ( _UARTSendString (2 , -> &U _numero `*Cuc -> -> 6 `i `uc ]
 "147
-[; ;MasterMain.c: 147:             if(hum > umbralHum){
+[; ;MasterMain.c: 147:             UARTSendChar(',');
+[e ( _UARTSendChar (1 -> -> 44 `ui `uc ]
+"148
+[; ;MasterMain.c: 148:             LcdWriteChar(0xDF);
+[e ( _LcdWriteChar (1 -> -> 223 `i `uc ]
+"149
+[; ;MasterMain.c: 149:             LcdWriteChar('C');
+[e ( _LcdWriteChar (1 -> -> 67 `ui `uc ]
+"151
+[; ;MasterMain.c: 151:             itoa(numero,hum,10);
+[e ( _itoa (3 , , &U _numero -> _hum `i -> 10 `i ]
+"152
+[; ;MasterMain.c: 152:             UARTSendString(numero,6);
+[e ( _UARTSendString (2 , -> &U _numero `*Cuc -> -> 6 `i `uc ]
+"153
+[; ;MasterMain.c: 153:             UARTSendChar('\n');
+[e ( _UARTSendChar (1 -> -> 10 `ui `uc ]
+"155
+[; ;MasterMain.c: 155:             if(hum > umbralHum){
 [e $ ! > -> _hum `i -> _umbralHum `i 158  ]
 {
-"148
-[; ;MasterMain.c: 148:                 itoa(numero,hum,10);
-[e ( _itoa (3 , , &U _numero -> _hum `i -> 10 `i ]
-"150
-[; ;MasterMain.c: 150:                 LcdWriteChar(' ');
+"158
+[; ;MasterMain.c: 158:                 LcdWriteChar(' ');
 [e ( _LcdWriteChar (1 -> -> 32 `ui `uc ]
-"151
-[; ;MasterMain.c: 151:                 LcdWriteString(numero);
+"159
+[; ;MasterMain.c: 159:                 LcdWriteString(numero);
 [e ( _LcdWriteString (1 -> &U _numero `*Cuc ]
-"152
-[; ;MasterMain.c: 152:                 LcdWriteChar('%');
+"160
+[; ;MasterMain.c: 160:                 LcdWriteChar('%');
 [e ( _LcdWriteChar (1 -> -> 37 `ui `uc ]
-"153
-[; ;MasterMain.c: 153:                 LcdWriteChar(' ');
+"161
+[; ;MasterMain.c: 161:                 LcdWriteChar(' ');
 [e ( _LcdWriteChar (1 -> -> 32 `ui `uc ]
-"154
-[; ;MasterMain.c: 154:             }else{
+"162
+[; ;MasterMain.c: 162:             }else{
 }
 [e $U 159  ]
 [e :U 158 ]
 {
-"155
-[; ;MasterMain.c: 155:                 LcdWriteString(" N.A");
-[e ( _LcdWriteString (1 :s 4C ]
-"156
-[; ;MasterMain.c: 156:             }
+"163
+[; ;MasterMain.c: 163:                 LcdWriteString(" N.A");
+[e ( _LcdWriteString (1 :s 6C ]
+"164
+[; ;MasterMain.c: 164:             }
 }
 [e :U 159 ]
-"160
-[; ;MasterMain.c: 160:             if(temp > umbralTemp) PORTA |= 48;
-[e $ ! > -> _temp `i -> _umbralTemp `i 160  ]
+"168
+[; ;MasterMain.c: 168:             if(temp > umbralTemp || hall==1) PORTA |= 48;
+[e $ ! || > -> _temp `i -> _umbralTemp `i == -> _hall `i -> 1 `i 160  ]
 [e =| _PORTA -> -> 48 `i `Vuc ]
 [e $U 161  ]
-"161
-[; ;MasterMain.c: 161:             else if(temp <= (umbralTemp-5))PORTA &= ~48;
+"169
+[; ;MasterMain.c: 169:             else if(temp <= (umbralTemp-1) && hall == 0 )PORTA &= ~48;
 [e :U 160 ]
-[e $ ! <= -> _temp `i - -> _umbralTemp `i -> 5 `i 162  ]
+[e $ ! && <= -> _temp `i - -> _umbralTemp `i -> 1 `i == -> _hall `i -> 0 `i 162  ]
 [e =& _PORTA -> ~ -> 48 `i `Vuc ]
 [e :U 162 ]
 [e :U 161 ]
-"162
-[; ;MasterMain.c: 162:         }else{
+"170
+[; ;MasterMain.c: 170:         }else{
 }
 [e $U 163  ]
 [e :U 153 ]
 {
-"163
-[; ;MasterMain.c: 163:             LcdSetCursor(1,1);
+"171
+[; ;MasterMain.c: 171:             LcdSetCursor(1,1);
 [e ( _LcdSetCursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"164
-[; ;MasterMain.c: 164:             LcdWriteString(" Selec. opcion: ");
-[e ( _LcdWriteString (1 :s 5C ]
-"165
-[; ;MasterMain.c: 165:             LcdSetCursor(2,1);
+"172
+[; ;MasterMain.c: 172:             LcdWriteString(" Selec. opcion: ");
+[e ( _LcdWriteString (1 :s 7C ]
+"173
+[; ;MasterMain.c: 173:             LcdSetCursor(2,1);
 [e ( _LcdSetCursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
-"166
-[; ;MasterMain.c: 166:             if(incrementar || decrementar){
+"174
+[; ;MasterMain.c: 174:             if(incrementar || decrementar){
 [e $ ! || != -> _incrementar `i -> 0 `i != -> _decrementar `i -> 0 `i 164  ]
 {
-"167
-[; ;MasterMain.c: 167:                 opcion = ~opcion;
+"175
+[; ;MasterMain.c: 175:                 opcion = ~opcion;
 [e = _opcion -> ~ -> _opcion `i `uc ]
-"168
-[; ;MasterMain.c: 168:                 incrementar = decrementar = 0;
+"176
+[; ;MasterMain.c: 176:                 incrementar = decrementar = 0;
 [e = _incrementar = _decrementar -> -> 0 `i `uc ]
-"169
-[; ;MasterMain.c: 169:             }
+"177
+[; ;MasterMain.c: 177:             }
 }
 [e :U 164 ]
-"170
-[; ;MasterMain.c: 170:             if(opcion)LcdWriteString(" Temp  >humedad");
+"178
+[; ;MasterMain.c: 178:             if(opcion)LcdWriteString(" Temp  >humedad");
 [e $ ! != -> _opcion `i -> 0 `i 165  ]
-[e ( _LcdWriteString (1 :s 6C ]
+[e ( _LcdWriteString (1 :s 8C ]
 [e $U 166  ]
-"171
-[; ;MasterMain.c: 171:             else LcdWriteString(">Temp   humedad");
+"179
+[; ;MasterMain.c: 179:             else LcdWriteString(">Temp   humedad");
 [e :U 165 ]
-[e ( _LcdWriteString (1 :s 7C ]
+[e ( _LcdWriteString (1 :s 9C ]
 [e :U 166 ]
-"173
-[; ;MasterMain.c: 173:             if(ok){
+"181
+[; ;MasterMain.c: 181:             if(ok){
 [e $ ! != -> _ok `i -> 0 `i 167  ]
 {
-"174
-[; ;MasterMain.c: 174:                 ok = 0;
+"182
+[; ;MasterMain.c: 182:                 ok = 0;
 [e = _ok -> -> 0 `i `uc ]
-"176
-[; ;MasterMain.c: 176:                 while(ok == 0){
+"184
+[; ;MasterMain.c: 184:                 while(ok == 0){
 [e $U 168  ]
 [e :U 169 ]
 {
-"177
-[; ;MasterMain.c: 177:                     portbAnterior = portbActual;
+"185
+[; ;MasterMain.c: 185:                     portbAnterior = portbActual;
 [e = _portbAnterior _portbActual ]
-"178
-[; ;MasterMain.c: 178:                     portbActual = PORTB;
+"186
+[; ;MasterMain.c: 186:                     portbActual = PORTB;
 [e = _portbActual -> _PORTB `uc ]
-"181
-[; ;MasterMain.c: 181:                     if((portbAnterior&2) == 0 && (portbActual&2) == 2 ) decrementar = 1;
+"189
+[; ;MasterMain.c: 189:                     if((portbAnterior&2) == 0 && (portbActual&2) == 2 ) decrementar = 1;
 [e $ ! && == & -> _portbAnterior `i -> 2 `i -> 0 `i == & -> _portbActual `i -> 2 `i -> 2 `i 171  ]
 [e = _decrementar -> -> 1 `i `uc ]
 [e :U 171 ]
-"182
-[; ;MasterMain.c: 182:                     if((portbAnterior&4) == 0 && (portbActual&4) == 4 ) incrementar = 1;
+"190
+[; ;MasterMain.c: 190:                     if((portbAnterior&4) == 0 && (portbActual&4) == 4 ) incrementar = 1;
 [e $ ! && == & -> _portbAnterior `i -> 4 `i -> 0 `i == & -> _portbActual `i -> 4 `i -> 4 `i 172  ]
 [e = _incrementar -> -> 1 `i `uc ]
 [e :U 172 ]
-"183
-[; ;MasterMain.c: 183:                     if((portbAnterior&8) == 0 && (portbActual&8) == 8 ) ok = 1;
+"191
+[; ;MasterMain.c: 191:                     if((portbAnterior&8) == 0 && (portbActual&8) == 8 ) ok = 1;
 [e $ ! && == & -> _portbAnterior `i -> 8 `i -> 0 `i == & -> _portbActual `i -> 8 `i -> 8 `i 173  ]
 [e = _ok -> -> 1 `i `uc ]
 [e :U 173 ]
-"186
-[; ;MasterMain.c: 186:                     if(opcion){
+"194
+[; ;MasterMain.c: 194:                     if(opcion){
 [e $ ! != -> _opcion `i -> 0 `i 174  ]
 {
-"188
-[; ;MasterMain.c: 188:                         if (incrementar){
+"196
+[; ;MasterMain.c: 196:                         if (incrementar){
 [e $ ! != -> _incrementar `i -> 0 `i 175  ]
 {
-"189
-[; ;MasterMain.c: 189:                             incrementar = 0;
+"197
+[; ;MasterMain.c: 197:                             incrementar = 0;
 [e = _incrementar -> -> 0 `i `uc ]
-"190
-[; ;MasterMain.c: 190:                             umbralHum++;
+"198
+[; ;MasterMain.c: 198:                             umbralHum++;
 [e ++ _umbralHum -> -> 1 `i `uc ]
-"191
-[; ;MasterMain.c: 191:                         }
+"199
+[; ;MasterMain.c: 199:                         }
 }
 [e :U 175 ]
-"192
-[; ;MasterMain.c: 192:                         if(decrementar && umbralHum>=0){
+"200
+[; ;MasterMain.c: 200:                         if(decrementar && umbralHum>=0){
 [e $ ! && != -> _decrementar `i -> 0 `i >= -> _umbralHum `i -> 0 `i 176  ]
 {
-"193
-[; ;MasterMain.c: 193:                             decrementar = 0;
+"201
+[; ;MasterMain.c: 201:                             decrementar = 0;
 [e = _decrementar -> -> 0 `i `uc ]
-"194
-[; ;MasterMain.c: 194:                             umbralHum--;
+"202
+[; ;MasterMain.c: 202:                             umbralHum--;
 [e -- _umbralHum -> -> 1 `i `uc ]
-"195
-[; ;MasterMain.c: 195:                         }
+"203
+[; ;MasterMain.c: 203:                         }
 }
 [e :U 176 ]
-"196
-[; ;MasterMain.c: 196:                         LcdSetCursor(1,1);
-[e ( _LcdSetCursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"197
-[; ;MasterMain.c: 197:                         LcdWriteString("  Hum. minima:  ");
-[e ( _LcdWriteString (1 :s 8C ]
-"198
-[; ;MasterMain.c: 198:                         LcdSetCursor(2,1);
-[e ( _LcdSetCursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
-"199
-[; ;MasterMain.c: 199:                         LcdWriteString("  ");
-[e ( _LcdWriteString (1 :s 9C ]
-"200
-[; ;MasterMain.c: 200:                         itoa(numero,umbralHum,10);
-[e ( _itoa (3 , , &U _numero -> _umbralHum `i -> 10 `i ]
-"201
-[; ;MasterMain.c: 201:                         LcdWriteString(numero);
-[e ( _LcdWriteString (1 -> &U _numero `*Cuc ]
-"202
-[; ;MasterMain.c: 202:                         LcdWriteString("%                      ");
-[e ( _LcdWriteString (1 :s 10C ]
-"203
-[; ;MasterMain.c: 203:                     }else{
-}
-[e $U 177  ]
-[e :U 174 ]
-{
 "204
 [; ;MasterMain.c: 204:                         LcdSetCursor(1,1);
 [e ( _LcdSetCursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "205
-[; ;MasterMain.c: 205:                         LcdWriteString("  Temp. Maxima: ");
-[e ( _LcdWriteString (1 :s 11C ]
+[; ;MasterMain.c: 205:                         LcdWriteString("  Hum. minima:  ");
+[e ( _LcdWriteString (1 :s 10C ]
 "206
-[; ;MasterMain.c: 206:                         if (incrementar){
+[; ;MasterMain.c: 206:                         LcdSetCursor(2,1);
+[e ( _LcdSetCursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"207
+[; ;MasterMain.c: 207:                         LcdWriteString("  ");
+[e ( _LcdWriteString (1 :s 11C ]
+"208
+[; ;MasterMain.c: 208:                         itoa(numero,umbralHum,10);
+[e ( _itoa (3 , , &U _numero -> _umbralHum `i -> 10 `i ]
+"209
+[; ;MasterMain.c: 209:                         LcdWriteString(numero);
+[e ( _LcdWriteString (1 -> &U _numero `*Cuc ]
+"210
+[; ;MasterMain.c: 210:                         LcdWriteString("%                      ");
+[e ( _LcdWriteString (1 :s 12C ]
+"211
+[; ;MasterMain.c: 211:                     }else{
+}
+[e $U 177  ]
+[e :U 174 ]
+{
+"212
+[; ;MasterMain.c: 212:                         LcdSetCursor(1,1);
+[e ( _LcdSetCursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+"213
+[; ;MasterMain.c: 213:                         LcdWriteString("  Temp. Maxima: ");
+[e ( _LcdWriteString (1 :s 13C ]
+"214
+[; ;MasterMain.c: 214:                         if (incrementar){
 [e $ ! != -> _incrementar `i -> 0 `i 178  ]
 {
-"207
-[; ;MasterMain.c: 207:                             incrementar = 0;
+"215
+[; ;MasterMain.c: 215:                             incrementar = 0;
 [e = _incrementar -> -> 0 `i `uc ]
-"208
-[; ;MasterMain.c: 208:                             umbralTemp++;
+"216
+[; ;MasterMain.c: 216:                             umbralTemp++;
 [e ++ _umbralTemp -> -> 1 `i `uc ]
-"209
-[; ;MasterMain.c: 209:                         }
+"217
+[; ;MasterMain.c: 217:                         }
 }
 [e :U 178 ]
-"210
-[; ;MasterMain.c: 210:                         if(decrementar && umbralTemp>=0){
+"218
+[; ;MasterMain.c: 218:                         if(decrementar && umbralTemp>=0){
 [e $ ! && != -> _decrementar `i -> 0 `i >= -> _umbralTemp `i -> 0 `i 179  ]
 {
-"211
-[; ;MasterMain.c: 211:                             decrementar = 0;
+"219
+[; ;MasterMain.c: 219:                             decrementar = 0;
 [e = _decrementar -> -> 0 `i `uc ]
-"212
-[; ;MasterMain.c: 212:                             umbralTemp--;
+"220
+[; ;MasterMain.c: 220:                             umbralTemp--;
 [e -- _umbralTemp -> -> 1 `i `uc ]
-"213
-[; ;MasterMain.c: 213:                         }
+"221
+[; ;MasterMain.c: 221:                         }
 }
 [e :U 179 ]
-"215
-[; ;MasterMain.c: 215:                         LcdSetCursor(2,1);
+"223
+[; ;MasterMain.c: 223:                         LcdSetCursor(2,1);
 [e ( _LcdSetCursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
-"216
-[; ;MasterMain.c: 216:                         LcdWriteString("  ");
-[e ( _LcdWriteString (1 :s 12C ]
-"217
-[; ;MasterMain.c: 217:                         itoa(numero,umbralTemp,10);
+"224
+[; ;MasterMain.c: 224:                         LcdWriteString("  ");
+[e ( _LcdWriteString (1 :s 14C ]
+"225
+[; ;MasterMain.c: 225:                         itoa(numero,umbralTemp,10);
 [e ( _itoa (3 , , &U _numero -> _umbralTemp `i -> 10 `i ]
-"218
-[; ;MasterMain.c: 218:                         LcdWriteString(numero);
+"226
+[; ;MasterMain.c: 226:                         LcdWriteString(numero);
 [e ( _LcdWriteString (1 -> &U _numero `*Cuc ]
-"219
-[; ;MasterMain.c: 219:                         LcdWriteChar(0xDF);
+"227
+[; ;MasterMain.c: 227:                         LcdWriteChar(0xDF);
 [e ( _LcdWriteChar (1 -> -> 223 `i `uc ]
-"220
-[; ;MasterMain.c: 220:                         LcdWriteString("C                   ");
-[e ( _LcdWriteString (1 :s 13C ]
-"221
-[; ;MasterMain.c: 221:                     }
+"228
+[; ;MasterMain.c: 228:                         LcdWriteString("C                   ");
+[e ( _LcdWriteString (1 :s 15C ]
+"229
+[; ;MasterMain.c: 229:                     }
 }
 [e :U 177 ]
-"223
-[; ;MasterMain.c: 223:                 }
+"231
+[; ;MasterMain.c: 231:                 }
 }
 [e :U 168 ]
-"176
-[; ;MasterMain.c: 176:                 while(ok == 0){
+"184
+[; ;MasterMain.c: 184:                 while(ok == 0){
 [e $ == -> _ok `i -> 0 `i 169  ]
 [e :U 170 ]
-"224
-[; ;MasterMain.c: 224:                 ok = 0;
+"232
+[; ;MasterMain.c: 232:                 ok = 0;
 [e = _ok -> -> 0 `i `uc ]
-"225
-[; ;MasterMain.c: 225:             }
+"233
+[; ;MasterMain.c: 233:             }
 }
 [e :U 167 ]
-"227
-[; ;MasterMain.c: 227:         }
+"235
+[; ;MasterMain.c: 235:         }
 }
 [e :U 163 ]
-"229
-[; ;MasterMain.c: 229:     }
+"237
+[; ;MasterMain.c: 237:     }
 }
 [e :U 145 ]
 [e $U 146  ]
 [e :U 147 ]
-"232
-[; ;MasterMain.c: 232:     return;
+"240
+[; ;MasterMain.c: 240:     return;
 [e $UE 144  ]
-"233
-[; ;MasterMain.c: 233: }
+"241
+[; ;MasterMain.c: 241: }
 [e :UE 144 ]
 }
-"236
-[; ;MasterMain.c: 236: void step(char steps, char dir){
+"244
+[; ;MasterMain.c: 244: void step(char steps, char dir){
 [v _step `(v ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _step ]
 [v _steps `uc ~T0 @X0 1 r1 ]
 [v _dir `uc ~T0 @X0 1 r2 ]
 [f ]
-"238
-[; ;MasterMain.c: 238:     switch(dir){
+"246
+[; ;MasterMain.c: 246:     switch(dir){
 [e $U 182  ]
 {
-"239
-[; ;MasterMain.c: 239:         case 0:
+"247
+[; ;MasterMain.c: 247:         case 0:
 [e :U 183 ]
-"240
-[; ;MasterMain.c: 240:             for (int i = 0; i<steps; i++){
+"248
+[; ;MasterMain.c: 248:             for (int i = 0; i<steps; i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 187  ]
 [e :U 184 ]
 {
-"241
-[; ;MasterMain.c: 241:                 PORTA &= ~14;
-[e =& _PORTA -> ~ -> 14 `i `Vuc ]
-"242
-[; ;MasterMain.c: 242:                 PORTA |= 1;
-[e =| _PORTA -> -> 1 `i `Vuc ]
-"243
-[; ;MasterMain.c: 243:                 _delay((unsigned long)((10)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"244
-[; ;MasterMain.c: 244:                 PORTA &= ~13;
-[e =& _PORTA -> ~ -> 13 `i `Vuc ]
-"245
-[; ;MasterMain.c: 245:                 PORTA |= 2;
-[e =| _PORTA -> -> 2 `i `Vuc ]
-"246
-[; ;MasterMain.c: 246:                 _delay((unsigned long)((10)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"247
-[; ;MasterMain.c: 247:                 PORTA &= ~11;
-[e =& _PORTA -> ~ -> 11 `i `Vuc ]
-"248
-[; ;MasterMain.c: 248:                 PORTA |= 4;
-[e =| _PORTA -> -> 4 `i `Vuc ]
 "249
-[; ;MasterMain.c: 249:                 _delay((unsigned long)((10)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;MasterMain.c: 249:                 PORTA &= ~14;
+[e =& _PORTA -> ~ -> 14 `i `Vuc ]
 "250
-[; ;MasterMain.c: 250:                 PORTA &= ~5;
-[e =& _PORTA -> ~ -> 5 `i `Vuc ]
+[; ;MasterMain.c: 250:                 PORTA |= 1;
+[e =| _PORTA -> -> 1 `i `Vuc ]
 "251
-[; ;MasterMain.c: 251:                 PORTA |= 8;
-[e =| _PORTA -> -> 8 `i `Vuc ]
-"252
-[; ;MasterMain.c: 252:                 _delay((unsigned long)((10)*(4000000/4000.0)));
+[; ;MasterMain.c: 251:                 _delay((unsigned long)((10)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"252
+[; ;MasterMain.c: 252:                 PORTA &= ~13;
+[e =& _PORTA -> ~ -> 13 `i `Vuc ]
 "253
-[; ;MasterMain.c: 253:             }
+[; ;MasterMain.c: 253:                 PORTA |= 2;
+[e =| _PORTA -> -> 2 `i `Vuc ]
+"254
+[; ;MasterMain.c: 254:                 _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"255
+[; ;MasterMain.c: 255:                 PORTA &= ~11;
+[e =& _PORTA -> ~ -> 11 `i `Vuc ]
+"256
+[; ;MasterMain.c: 256:                 PORTA |= 4;
+[e =| _PORTA -> -> 4 `i `Vuc ]
+"257
+[; ;MasterMain.c: 257:                 _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"258
+[; ;MasterMain.c: 258:                 PORTA &= ~5;
+[e =& _PORTA -> ~ -> 5 `i `Vuc ]
+"259
+[; ;MasterMain.c: 259:                 PORTA |= 8;
+[e =| _PORTA -> -> 8 `i `Vuc ]
+"260
+[; ;MasterMain.c: 260:                 _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"261
+[; ;MasterMain.c: 261:             }
 }
 [e ++ _i -> 1 `i ]
 [e :U 187 ]
 [e $ < _i -> _steps `i 184  ]
 [e :U 185 ]
 }
-"254
-[; ;MasterMain.c: 254:             break;
+"262
+[; ;MasterMain.c: 262:             break;
 [e $U 181  ]
-"255
-[; ;MasterMain.c: 255:         case 1:
+"263
+[; ;MasterMain.c: 263:         case 1:
 [e :U 188 ]
-"256
-[; ;MasterMain.c: 256:             for (int i = 0; i<steps; i++){
+"264
+[; ;MasterMain.c: 264:             for (int i = 0; i<steps; i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 192  ]
 [e :U 189 ]
 {
-"257
-[; ;MasterMain.c: 257:                 PORTA &= ~5;
+"265
+[; ;MasterMain.c: 265:                 PORTA &= ~5;
 [e =& _PORTA -> ~ -> 5 `i `Vuc ]
-"258
-[; ;MasterMain.c: 258:                 PORTA |= 8;
-[e =| _PORTA -> -> 8 `i `Vuc ]
-"259
-[; ;MasterMain.c: 259:                 _delay((unsigned long)((10)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"261
-[; ;MasterMain.c: 261:                 PORTA &= ~11;
-[e =& _PORTA -> ~ -> 11 `i `Vuc ]
-"262
-[; ;MasterMain.c: 262:                 PORTA |= 4;
-[e =| _PORTA -> -> 4 `i `Vuc ]
-"263
-[; ;MasterMain.c: 263:                 _delay((unsigned long)((10)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "266
-[; ;MasterMain.c: 266:                 PORTA &= ~13;
-[e =& _PORTA -> ~ -> 13 `i `Vuc ]
+[; ;MasterMain.c: 266:                 PORTA |= 8;
+[e =| _PORTA -> -> 8 `i `Vuc ]
 "267
-[; ;MasterMain.c: 267:                 PORTA |= 2;
-[e =| _PORTA -> -> 2 `i `Vuc ]
-"268
-[; ;MasterMain.c: 268:                 _delay((unsigned long)((10)*(4000000/4000.0)));
+[; ;MasterMain.c: 267:                 _delay((unsigned long)((10)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"269
+[; ;MasterMain.c: 269:                 PORTA &= ~11;
+[e =& _PORTA -> ~ -> 11 `i `Vuc ]
+"270
+[; ;MasterMain.c: 270:                 PORTA |= 4;
+[e =| _PORTA -> -> 4 `i `Vuc ]
 "271
-[; ;MasterMain.c: 271:                 PORTA &= ~14;
-[e =& _PORTA -> ~ -> 14 `i `Vuc ]
-"272
-[; ;MasterMain.c: 272:                 PORTA |= 1;
-[e =| _PORTA -> -> 1 `i `Vuc ]
-"273
-[; ;MasterMain.c: 273:                 _delay((unsigned long)((10)*(4000000/4000.0)));
+[; ;MasterMain.c: 271:                 _delay((unsigned long)((10)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"274
+[; ;MasterMain.c: 274:                 PORTA &= ~13;
+[e =& _PORTA -> ~ -> 13 `i `Vuc ]
 "275
-[; ;MasterMain.c: 275:             }
+[; ;MasterMain.c: 275:                 PORTA |= 2;
+[e =| _PORTA -> -> 2 `i `Vuc ]
+"276
+[; ;MasterMain.c: 276:                 _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"279
+[; ;MasterMain.c: 279:                 PORTA &= ~14;
+[e =& _PORTA -> ~ -> 14 `i `Vuc ]
+"280
+[; ;MasterMain.c: 280:                 PORTA |= 1;
+[e =| _PORTA -> -> 1 `i `Vuc ]
+"281
+[; ;MasterMain.c: 281:                 _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"283
+[; ;MasterMain.c: 283:             }
 }
 [e ++ _i -> 1 `i ]
 [e :U 192 ]
 [e $ < _i -> _steps `i 189  ]
 [e :U 190 ]
 }
-"276
-[; ;MasterMain.c: 276:             break;
+"284
+[; ;MasterMain.c: 284:             break;
 [e $U 181  ]
-"278
-[; ;MasterMain.c: 278:     }
+"286
+[; ;MasterMain.c: 286:     }
 }
 [e $U 181  ]
 [e :U 182 ]
@@ -1096,20 +1120,22 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 1 `i 188
  181 ]
 [e :U 181 ]
-"281
-[; ;MasterMain.c: 281: }
+"289
+[; ;MasterMain.c: 289: }
 [e :UE 180 ]
 }
-[a 3C 99 108 111 115 101 0 ]
-[a 6C 32 84 101 109 112 32 32 62 104 117 109 101 100 97 100 0 ]
-[a 7C 62 84 101 109 112 32 32 32 104 117 109 101 100 97 100 0 ]
-[a 4C 32 78 46 65 0 ]
+[a 8C 32 84 101 109 112 32 32 62 104 117 109 101 100 97 100 0 ]
+[a 9C 62 84 101 109 112 32 32 32 104 117 109 101 100 97 100 0 ]
+[a 6C 32 78 46 65 0 ]
 [a 1C 72 97 108 108 58 32 84 101 109 112 58 32 72 117 109 58 0 ]
-[a 2C 111 112 101 110 32 0 ]
-[a 5C 32 83 101 108 101 99 46 32 111 112 99 105 111 110 58 32 0 ]
-[a 11C 32 32 84 101 109 112 46 32 77 97 120 105 109 97 58 32 0 ]
-[a 8C 32 32 72 117 109 46 32 109 105 110 105 109 97 58 32 32 0 ]
-[a 13C 67 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 10C 37 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 9C 32 32 0 ]
-[a 12C 32 32 0 ]
+[a 5C 49 44 0 ]
+[a 3C 48 44 0 ]
+[a 4C 111 112 101 110 32 0 ]
+[a 2C 99 108 111 115 101 32 0 ]
+[a 7C 32 83 101 108 101 99 46 32 111 112 99 105 111 110 58 32 0 ]
+[a 13C 32 32 84 101 109 112 46 32 77 97 120 105 109 97 58 32 0 ]
+[a 10C 32 32 72 117 109 46 32 109 105 110 105 109 97 58 32 32 0 ]
+[a 15C 67 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 12C 37 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 11C 32 32 0 ]
+[a 14C 32 32 0 ]

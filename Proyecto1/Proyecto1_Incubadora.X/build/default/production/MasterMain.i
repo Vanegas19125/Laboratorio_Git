@@ -2848,7 +2848,7 @@ char numero[10];
 uint8_t menu =0;
 uint8_t opcion = 0;
 uint8_t incrementar, decrementar, ok;
-char umbralTemp=32, umbralHum=20;
+char umbralTemp=40, umbralHum=40;
 char portbAnterior =31,portbActual=31;
 uint8_t contador = 0;
 uint8_t direccion = 0;
@@ -2878,7 +2878,7 @@ void main(void) {
 
     PORTA = 0;
     LcdInit();
-    UARTInit(9600,1);
+    UARTInit(19200,1);
     I2C_Master_Init(100000);
 
     PR2 =255;
@@ -2900,10 +2900,10 @@ void main(void) {
         if((portbAnterior&4) == 0 && (portbActual&4) == 4 ) incrementar = 1;
         if((portbAnterior&8) == 0 && (portbActual&8) == 8 ) ok = 1;
 
-        if(contador == 45){
+        if(contador == 229){
 
             contador = 0;
-            step(128,direccion);
+            step(64,direccion);
 
             direccion = ~direccion&1;
         }
@@ -2921,10 +2921,12 @@ void main(void) {
 
             switch(hall){
                 case 0:
-                    LcdWriteString("open ");
+                    LcdWriteString("close ");
+                    UARTSendString("0,",5);
                     break;
                 case 1:
-                    LcdWriteString("close");
+                    LcdWriteString("open ");
+                    UARTSendString("1,",6);
                     break;
             }
 
@@ -2946,11 +2948,17 @@ void main(void) {
             LcdWriteChar(' ');
             LcdWriteChar(' ');
             LcdWriteString(numero);
+            UARTSendString(numero,6);
+            UARTSendChar(',');
             LcdWriteChar(0xDF);
             LcdWriteChar('C');
 
+            itoa(numero,hum,10);
+            UARTSendString(numero,6);
+            UARTSendChar('\n');
+
             if(hum > umbralHum){
-                itoa(numero,hum,10);
+
 
                 LcdWriteChar(' ');
                 LcdWriteString(numero);
@@ -2962,8 +2970,8 @@ void main(void) {
 
 
 
-            if(temp > umbralTemp) PORTA |= 48;
-            else if(temp <= (umbralTemp-5))PORTA &= ~48;
+            if(temp > umbralTemp || hall==1) PORTA |= 48;
+            else if(temp <= (umbralTemp-1) && hall == 0 )PORTA &= ~48;
         }else{
             LcdSetCursor(1,1);
             LcdWriteString(" Selec. opcion: ");

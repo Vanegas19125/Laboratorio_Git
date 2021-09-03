@@ -49,12 +49,14 @@
 [v _ISR ISR `II(v  1 e 1 0 ]
 "63
 [v _main main `(v  1 e 1 0 ]
-"236
+"244
 [v _step step `(v  1 e 1 0 ]
 "8 C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Proyecto1\Proyecto1_Incubadora.X\USART.c
 [v _UARTInit UARTInit `(v  1 e 1 0 ]
 "39
 [v _UARTSendChar UARTSendChar `(v  1 e 1 0 ]
+"49
+[v _UARTSendString UARTSendString `(v  1 e 1 0 ]
 "60
 [v _UARTDataReady UARTDataReady `(uc  1 e 1 0 ]
 "68
@@ -110,7 +112,7 @@
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
-[s S448 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S461 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -120,18 +122,18 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "1068
-[s S457 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S470 . 1 `uc 1 RCD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S461 . 1 `uc 1 . 1 0 :6:0 
+[s S474 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 nRC8 1 0 :1:6 
 ]
-[s S464 . 1 `uc 1 . 1 0 :6:0 
+[s S477 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[u S467 . 1 `S448 1 . 1 0 `S457 1 . 1 0 `S461 1 . 1 0 `S464 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES467  1 e 1 @24 ]
+[u S480 . 1 `S461 1 . 1 0 `S470 1 . 1 0 `S474 1 . 1 0 `S477 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES480  1 e 1 @24 ]
 "1133
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
 "1140
@@ -154,7 +156,7 @@
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S301 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S314 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -164,8 +166,8 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1557
-[u S310 . 1 `S301 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES310  1 e 1 @135 ]
+[u S323 . 1 `S314 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES323  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
@@ -183,7 +185,7 @@
 [v _PIE1bits PIE1bits `VES158  1 e 1 @140 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S322 . 1 `uc 1 SEN 1 0 :1:0 
+[s S335 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -193,15 +195,15 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1996
-[u S331 . 1 `S322 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES331  1 e 1 @145 ]
+[u S344 . 1 `S335 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES344  1 e 1 @145 ]
 "2041
 [v _PR2 PR2 `VEuc  1 e 1 @146 ]
 "2048
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-[s S411 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S424 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -211,15 +213,15 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "2582
-[s S420 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S433 . 1 `uc 1 TXD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 nTX8 1 0 :1:6 
 ]
-[s S424 . 1 `uc 1 . 1 0 :6:0 
+[s S437 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[u S427 . 1 `S411 1 . 1 0 `S420 1 . 1 0 `S424 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES427  1 e 1 @152 ]
+[u S440 . 1 `S424 1 . 1 0 `S433 1 . 1 0 `S437 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES440  1 e 1 @152 ]
 "2642
 [v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
 "3387
@@ -286,21 +288,21 @@
 "63
 [v _main main `(v  1 e 1 0 ]
 {
-"233
+"241
 } 0
-"236
+"244
 [v _step step `(v  1 e 1 0 ]
 {
 [v step@steps steps `uc  1 a 1 wreg ]
-"256
-[v step@i_296 i `i  1 a 2 2 ]
-"240
+"264
+[v step@i_309 i `i  1 a 2 2 ]
+"248
 [v step@i i `i  1 a 2 0 ]
-"236
+"244
 [v step@steps steps `uc  1 a 1 wreg ]
 [v step@dir dir `uc  1 p 1 3 ]
 [v step@steps steps `uc  1 a 1 4 ]
-"281
+"289
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\itoa.c
 [v _itoa itoa `(*.4uc  1 e 1 0 ]
@@ -350,7 +352,25 @@
 [v ___lwdiv@dividend dividend `ui  1 p 2 5 ]
 "30
 } 0
-"8 C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Proyecto1\Proyecto1_Incubadora.X\USART.c
+"49 C:\Users\vaneg\Desktop\6to Semestre\Digital 2\Laboratorio_Git\Proyecto1\Proyecto1_Incubadora.X\USART.c
+[v _UARTSendString UARTSendString `(v  1 e 1 0 ]
+{
+"50
+[v UARTSendString@i i `i  1 a 2 3 ]
+"49
+[v UARTSendString@str str `*.26DCuc  1 p 2 4 ]
+[v UARTSendString@max_length max_length `DCuc  1 p 1 6 ]
+"54
+} 0
+"39
+[v _UARTSendChar UARTSendChar `(v  1 e 1 0 ]
+{
+[v UARTSendChar@c c `DCuc  1 a 1 wreg ]
+[v UARTSendChar@c c `DCuc  1 a 1 wreg ]
+[v UARTSendChar@c c `DCuc  1 a 1 3 ]
+"42
+} 0
+"8
 [v _UARTInit UARTInit `(v  1 e 1 0 ]
 {
 [v UARTInit@baud_rate baud_rate `DCul  1 p 4 13 ]
