@@ -9,7 +9,7 @@ def main():
     #iniciar comunicacion serial
     pic = Serial("COM4",19200)
     from Adafruit_IO import Client, RequestError, Feed
-    ADAFRUIT_IO_KEY = "aio_wZHY00TIj6LBrcm95jxMQlvtnfVv"
+    ADAFRUIT_IO_KEY = "aio_yeTG35Q0YtwZLfUiPMa4WERl0TFC"
     ADAFRUIT_IO_USERNAME = "JV19125"
     aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
     hall_feed = aio.feeds("hall")

@@ -43,8 +43,8 @@ char numero[10];
 uint8_t menu =0; // indica si se tiene que mostrar la configuracion o el sensores
 uint8_t opcion = 0; // 0 temperatura 1 humedad.
 uint8_t incrementar, decrementar, ok;
-char umbralTemp=40, umbralHum=40; 
-char portbAnterior =31,portbActual=31;
+char umbralTemp=40, umbralHum=40; //Definimos una temperatura inicial
+char portbAnterior =31,portbActual=31; //Pines de pushBottoms
 uint8_t contador = 0;
 uint8_t direccion = 0;
 
@@ -70,8 +70,9 @@ void main(void) {
     OPTION_REGbits.nRBPU= 0;
     TRISA = 0;
     
-    //PORTD = 255;
+    
     PORTA = 0;
+    //Inicialización de LCD, UART e I2C
     LcdInit();
     UARTInit(19200,1);
     I2C_Master_Init(100000);
@@ -84,7 +85,7 @@ void main(void) {
     
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-    PIE1bits.TMR2IE = 1; // interrupciones activdas
+    PIE1bits.TMR2IE = 1; // interrupciones activadas
     
     while(1){
         portbAnterior = portbActual;
