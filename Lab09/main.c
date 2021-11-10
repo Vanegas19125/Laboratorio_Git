@@ -5,11 +5,12 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 
+//Funciones para el antirebote y el semaforo
 void antirrebote(void);
 void semaforo(void);
 
-bool push0 = 0;
-bool push0_active = 0;
+bool push = 0;
+bool push_active = 0;
 
 int main(void)
 {
@@ -19,16 +20,17 @@ int main(void)
     GPIOPinTypeGPIOInput(GPIO_PORTF_BASE, GPIO_PIN_4);
     GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
     while (1){
-        if(!GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4)) push0 = 1;
+        if(!GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4)) push = 1;
 
-        if(push0 == 1){
-            push0 = 0;
+        if(push == 1){
+            push = 0;
             semaforo();
         }
     }
 
 }
 
+// -----------Se creo una funcion semaforo, que funciona con los leds de la Tiva  ------------
 
 void semaforo(void){
     GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_3, 0x08);
